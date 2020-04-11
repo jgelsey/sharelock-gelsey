@@ -43,13 +43,15 @@
     domain:       '{{auth0_domain}}',
     clientID:     '{{auth0_client_id}}',
     callbackURL:  '{{auth0_callback}}',
+    responseType: 'token id_token'        // <!-- upgrade to Lock 9 -->    
     callbackOnLocationHash: false
   });
 
   $('.btns .facebook').click(function(e) {
     e.preventDefault();
 
-    auth0.login({
+    // auth0.login({
+    webAuth.authorize({     // <!-- upgrade to Lock 9 -->
       connection: 'facebook'
     });
   });
@@ -57,16 +59,18 @@
   $('.btns .google-oauth2').click(function(e) {
     e.preventDefault();
 
-    auth0.login({
+    // auth0.login({
+    webAuth.authorize({     // <!-- upgrade to Lock 9 -->
       connection: 'google-oauth2',
-      connection_scope: 'https://www.googleapis.com/auth/plus.login'
+      // connection_scope: 'https://www.googleapis.com/auth/plus.login' // deprecated by Google https://developers.google.com/+/scopes-shutdown
     });
   });
 
   $('.btns .twitter').click(function(e) {
     e.preventDefault();
 
-    auth0.login({
+    // auth0.login({
+    webAuth.authorize({     // <!-- upgrade to Lock 9 -->
       connection: 'twitter'
     });
   });
@@ -74,7 +78,8 @@
   $('.btns .windowslive').click(function(e) {
     e.preventDefault();
 
-    auth0.login({
+    // auth0.login({
+    webAuth.authorize({     // <!-- upgrade to Lock 9 -->
       connection: 'windowslive'
     });
   });
