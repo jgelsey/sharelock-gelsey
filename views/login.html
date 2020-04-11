@@ -39,11 +39,13 @@
 <script src="https://cdn.auth0.com/js/auth0/9.11/auth0.min.js"></script>  <!-- upgrade to Lock 9 -->
 
 <script type="text/javascript">
-  var auth0 = new Auth0({
+  // var auth0 = new Auth0({
+ var webAuth = new auth0.WebAuth({            // <!-- upgrade to Lock 9 -->    
     domain:       '{{auth0_domain}}',
     clientID:     '{{auth0_client_id}}',
-    callbackURL:  '{{auth0_callback}}',
-    responseType: 'token id_token'        // <!-- upgrade to Lock 9 -->    
+    // callbackURL:  '{{auth0_callback}}',
+    redirectUri:  '{{auth0_callback}}',       // <!-- upgrade to Lock 9 -->    
+    responseType: 'token id_token',           // <!-- upgrade to Lock 9 -->    
     callbackOnLocationHash: false
   });
 
@@ -61,7 +63,7 @@
 
     // auth0.login({
     webAuth.authorize({     // <!-- upgrade to Lock 9 -->
-      connection: 'google-oauth2',
+      connection: 'google-oauth2'
       // connection_scope: 'https://www.googleapis.com/auth/plus.login' // deprecated by Google https://developers.google.com/+/scopes-shutdown
     });
   });
